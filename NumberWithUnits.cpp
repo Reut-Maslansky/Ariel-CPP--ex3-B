@@ -4,7 +4,6 @@
 #include <sstream>
 #include <stdexcept>
 #include <iostream>
-#define EPS 0.001
 using namespace std;
 
 namespace ariel
@@ -70,6 +69,8 @@ namespace ariel
     //Compare operation
     bool NumberWithUnits::operator==(const NumberWithUnits &u) const
     {
+        const float EPS =0.001;
+        
         if (name == u.name)
         {
             return abs(amount - u.amount) <= EPS;
