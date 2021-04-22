@@ -69,8 +69,8 @@ namespace ariel
     //Compare operation
     bool NumberWithUnits::operator==(const NumberWithUnits &u) const
     {
-        const float EPS =0.0001;
-        
+        const float EPS = 0.0001;
+
         if (name == u.name)
         {
             return abs(amount - u.amount) <= EPS;
@@ -129,33 +129,13 @@ namespace ariel
     // += / -= operation
     NumberWithUnits &NumberWithUnits::operator+=(const NumberWithUnits &u)
     {
-        if (name == u.name)
-        {
-            amount += u.amount;
-            return *this;
-        }
-        if (!sameType(name, u.name))
-        {
-            throw invalid_argument("Not Same Type");
-        }
-
-        amount += myUnits.at(u.name).at(name) * u.amount;
+        *this = *this + u;
         return *this;
     }
 
     NumberWithUnits &NumberWithUnits::operator-=(const NumberWithUnits &u)
     {
-        if (name == u.name)
-        {
-            amount -= u.amount;
-            return *this;
-        }
-        if (!sameType(name, u.name))
-        {
-            throw invalid_argument("Not Same Type");
-        }
-
-        amount -= myUnits.at(u.name).at(name) * u.amount;
+        *this = *this - u;
         return *this;
     }
 
