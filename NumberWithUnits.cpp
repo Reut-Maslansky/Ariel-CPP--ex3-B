@@ -69,7 +69,7 @@ namespace ariel
     //Compare operation
     bool NumberWithUnits::operator==(const NumberWithUnits &u) const
     {
-        const float EPS =0.001;
+        const float EPS =0.0001;
         
         if (name == u.name)
         {
