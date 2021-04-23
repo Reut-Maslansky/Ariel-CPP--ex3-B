@@ -28,30 +28,31 @@ int main()
     ifstream units_MyFile{file};
     NumberWithUnits::read_units(units_MyFile);
     usleep(100000);
-    cout << endl<<"This is the types of conversions:" << endl<<endl;
+    cout << endl
+         << "This is the types of conversions:" << endl
+         << endl;
 
     ifstream MyReadFile(file);
 
-    for (auto elem : NumberWithUnits::myUnits)
-    {
-        std::cout << elem.first;
-        std::cout << "      its same types: ";
-        for (auto t : NumberWithUnits::myUnits.at(elem.first))
-        {
-            std::cout << t.first << "   ";
-        }
-        usleep(100000);
-        cout<<endl;
-    }
-
-    cout << endl<<"you can create objects and do on them operators functions" << endl;
+    cout << "{km, m, cm}" << endl;
+    usleep(100000);
+    cout << "{ton, kg, g}" << endl;
+    usleep(100000);
+    cout << "{hour, min, sec}" << endl;
+    usleep(100000);
+    cout << "{USD, ILS}" << endl;
+    usleep(100000);
+    cout << endl
+         << "you can create objects and do on them operators functions" << endl;
     cout << "create 2 objects: <here write the type from the file>[<here write the num>]" << endl;
     NumberWithUnits a{1, "m"};
     NumberWithUnits b{1, "m"};
     cin >> a >> b;
+    cout<<endl;
     cout << "a: " << a << endl;
     cout << "b: " << b << endl;
-    cout << "choose 1:/+ 2:- 3:+= 4:-= 5:a* 6:b*" << endl;
+    cout<<endl;
+    cout << "choose one of the option: \n1:/a+b \n2:a-b \n3:a+=b \n4:a-=b \n5:a*num \n6:b*num" << endl;
     int num;
     cin >> num;
     NumberWithUnits temp = 1 * a;
@@ -76,13 +77,13 @@ int main()
             cout << temp << "-=" << b << "-> a=" << a << endl;
             break;
         case 5:
-            cout << "enter the number you want to multiply by";
+            cout << "enter the number you want to multiply by ";
             cin >> x;
             cout << a << "*" << x << "=" << (a * x) << endl;
 
             break;
         case 6:
-            cout << "enter the number you want to multiply by";
+            cout << "enter the number you want to multiply by ";
             cin >> x;
             cout << b << "*" << x << "=" << (b * x) << endl;
             break;
@@ -93,7 +94,7 @@ int main()
     }
     catch (exception &ex)
     {
-        cout << "   caught exception: " << ex.what() << endl;
+        cout << ex.what() << endl;
         cout << "exit" << endl;
     }
     return 0;
