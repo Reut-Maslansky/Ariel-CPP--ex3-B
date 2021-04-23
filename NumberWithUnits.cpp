@@ -61,9 +61,12 @@ namespace ariel
         }
     }
 
-    bool sameType(const string &a, const string &b)
+    void NumberWithUnits::sameType(const string &a, const string &b) const
     {
-        return (NumberWithUnits::myUnits.at(a).count(b) != 0) && (NumberWithUnits::myUnits.at(b).count(a) != 0);
+        if ((myUnits.at(a).count(b) == 0) && (myUnits.at(b).count(a) == 0))
+        {
+            throw invalid_argument("Not Same Type");
+        }
     }
 
     //Compare operation
@@ -75,10 +78,7 @@ namespace ariel
         {
             return abs(amount - u.amount) <= EPS;
         }
-        if (!sameType(name, u.name))
-        {
-            throw invalid_argument("Not Same Type");
-        }
+        sameType(name, u.name);
 
         return abs((myUnits.at(name).at(u.name) * amount) - u.amount) <= EPS;
     }
@@ -94,10 +94,7 @@ namespace ariel
         {
             return amount > u.amount;
         }
-        if (!sameType(name, u.name))
-        {
-            throw invalid_argument("Not Same Type");
-        }
+        sameType(name, u.name);
 
         return myUnits.at(name).at(u.name) * amount > u.amount;
     }
@@ -108,10 +105,7 @@ namespace ariel
         {
             return amount < u.amount;
         }
-        if (!sameType(name, u.name))
-        {
-            throw invalid_argument("Not Same Type");
-        }
+        sameType(name, u.name);
 
         return myUnits.at(name).at(u.name) * amount < u.amount;
     }
@@ -177,7 +171,7 @@ namespace ariel
             double tempAmount = u1.amount + u2.amount;
             return NumberWithUnits{tempAmount, u1.name};
         }
-        if (!sameType(u1.name, u2.name))
+        if (!(NumberWithUnits::myUnits.at(u1.name).count(u2.name) != 0))
         {
             throw invalid_argument("Not Same Type");
         }
@@ -193,7 +187,7 @@ namespace ariel
             double tempAmount = u1.amount - u2.amount;
             return NumberWithUnits{tempAmount, u1.name};
         }
-        if (!sameType(u1.name, u2.name))
+        if (!(NumberWithUnits::myUnits.at(u1.name).count(u2.name) != 0))
         {
             throw invalid_argument("Not Same Type");
         }
