@@ -11,7 +11,7 @@ namespace ariel
         double amount;
         std::string name;
         static std::map<std::string, std::map<std::string, double>> myUnits;
-        void sameType(const std::string &a, const std::string &b) const;
+        static void sameType(const std::string &a, const std::string &b);
 
     public:
         NumberWithUnits(double, const std::string &);

@@ -61,7 +61,7 @@ namespace ariel
         }
     }
 
-    void NumberWithUnits::sameType(const string &a, const string &b) const
+    void NumberWithUnits::sameType(const string &a, const string &b)
     {
         if ((myUnits.at(a).count(b) == 0) && (myUnits.at(b).count(a) == 0))
         {
